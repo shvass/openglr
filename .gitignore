@@ -12,6 +12,11 @@ _deps
 CMakeUserPresets.json
 
 
+# build directories
 build/
 bin/
 out/
+
+# IDE configurations
+.vscode/
+

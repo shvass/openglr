@@ -22,16 +22,17 @@ project(openglr LANGUAGES C CXX)
 
 # build dependencies
 add_subdirectory(deps/glfw)
-
-# add all files for compilation
-file(GLOB openglr_srcs src/*.cpp)
-file(GLOB openglr_headers src/*.hpp)
+add_subdirectory(deps/glad)
+add_subdirectory(deps/glad)
+file(GLOB_RECURSE openglr_srcs src/**.cpp)
+file(GLOB_RECURSE openglr_headers src/**.hpp)
 
 message(STATUS "openglr sources ${openglr_srcs}")
 
 add_library(openglr ${openglr_srcs})
-target_link_libraries(openglr PUBLIC glfw)
+target_link_libraries(openglr PUBLIC glfw glad imgui plog)
 target_include_directories(openglr PUBLIC ${CMAKE_SOURCE_DIR}/src)
+target_precompile_headers(openglr PUBLIC ${CMAKE_SOURCE_DIR}/src/pch.hpp)
 
 
 # Ctest integration
